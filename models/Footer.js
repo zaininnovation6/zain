@@ -30,6 +30,27 @@ const quickLinkSchema = new mongoose.Schema({
   }
 }, { _id: true });
 
+const footerStyleSchema = new mongoose.Schema({
+  textColor: {
+    type: String,
+    default: '#FFFFFF'
+  },
+  backgroundColor: {
+    type: String,
+    default: '#111827'
+  },
+  fontSize: {
+    base: {
+      type: String,
+      default: '1rem'
+    },
+    heading: {
+      type: String,
+      default: '1.25rem'
+    }
+  }
+}, { _id: false });
+
 const footerSchema = new mongoose.Schema({
   companyInfo: {
     description: {
@@ -44,6 +65,13 @@ const footerSchema = new mongoose.Schema({
       type: String,
       required: true
     }
+  },
+  backgroundImage: {
+    type: String
+  },
+  styles: {
+    type: footerStyleSchema,
+    default: () => ({})
   },
   isActive: {
     type: Boolean,
